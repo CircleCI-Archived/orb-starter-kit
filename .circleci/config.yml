@@ -1,0 +1,11 @@
+version: 2.1
+
+orbs:
+  orb-tools: circleci/orb-tools@5.0.4
+  shellcheck: circleci/shellcheck@1.3.3
+
+workflows:
+  validate:
+    jobs:
+      - orb-tools/lint
+      - shellcheck/check

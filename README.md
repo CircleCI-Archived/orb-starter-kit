@@ -30,7 +30,7 @@ If you haven't already installed the [CircleCI CLI](https://github.com/circleci-
 bash create-namespace.sh your-desired-namespace your-github-org
 ```
 
-_Note: to create a namespace, you must have owner/admin privileges in the GitHub org to which it is linked_
+_**Note:** to create a namespace, you must have owner/admin privileges in the GitHub org to which it is linked_
 
 3. Run the `create-orb.sh` script like this:
 
@@ -42,3 +42,9 @@ bash create-orb.sh your-namespace/your-desired-orb-name
 This orb provides a basic directory/file structure for a decomposed orb (where commands, jobs, examples, and executors each live in their own YAML file). Create each of your commands, jobs, examples, and executors within the requisite folders in the `src` directory.
 
 On every new pushed commit, `src` will automatically be linted via `yamllint`, packed into a single `orb.yml` file, validated by the `circleci` CLI, and, if valid, published, as a `dev` release, to the orb registry.
+
+Following are some resources to help you build and test your orb:
+
+- [Tips for writing your first orb](https://circleci.com/blog/tips-for-writing-your-first-orb/)
+- [How to make an easy and valuable open source contribution with CircleCI orbs](https://circleci.com/blog/how-to-make-an-easy-and-valuable-open-source-contribution-with-circleci-orbs/)
+- Creating automated build, test, and deploy workflows for orbs: [part 1](https://circleci.com/blog/creating-automated-build-test-and-deploy-workflows-for-orbs/), [part 2](https://circleci.com/blog/creating-automated-build-test-and-deploy-workflows-for-orbs-part-2/)

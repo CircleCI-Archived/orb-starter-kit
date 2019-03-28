@@ -1,12 +1,11 @@
 version: 2.1
 
-# add your orb below, to be used in integration tests (note: a
-# @dev:alpha release must exist; you'll need to publish manually once)
+# add your orb below, to be used in integration tests (note: a @dev:alpha
+# release must exist; you'll need to publish manually at least once)
+# you can use scripts/publish-alpha.sh to publish a @dev:alpha release
 orbs:
   # your-orb: your-namespace/your-orb@dev:alpha
-  circle-compare-url: iynere/compare-url@0.4.5
-  cli: circleci/circleci-cli@0.1.2
-  orb-tools: circleci/orb-tools@5.0.4
+  orb-tools: circleci/orb-tools@8.5.0
 
 workflows:
   # this `lint-pack_validate_publish-dev` workflow will run on any commit
@@ -61,6 +60,11 @@ workflows:
   integration-tests_prod-release:
     jobs:
       # - your integration test jobs go here
+      # - you will want to call each integration testing job twice,
+      # - each under a different name:
+      # - once, for integration tests triggered by non-master-branch commits
+      # - and again, for tests triggered by commits to master
+      # - only commits to master should potentially trigger a prod release
 
       # patch, minor, or major publishing
       - orb-tools/dev-promote-prod:

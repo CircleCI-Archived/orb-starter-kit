@@ -1,5 +1,8 @@
 version: 2.1
 
-description: |
+description: >
   # What will your orb allow users to do?
   # Descriptions should be short, simple, and clear.
+
+orbs:
+  # if your orb will use any other orbs, you can import them here

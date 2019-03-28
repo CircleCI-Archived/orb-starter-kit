@@ -11,5 +11,7 @@ Orbs are reusable [commands](https://circleci.com/docs/2.0/reusing-config/#autho
 4. `cd` into the folder and run `git init` to initalize it as a new local `git` repository
 5. Push your repository to the blank GitHub repostory you created:
 
-```git remote add origin git@github.com:$YOUR_GITHUB_USERNAME/$YOUR_GITHUB_REPOSITORY.git
-git push -u origin master```
+```
+git remote add origin git@github.com:$YOUR_GITHUB_USERNAME/$YOUR_GITHUB_REPOSITORY.git
+git push -u origin master
+```

@@ -20,7 +20,25 @@ git push -u origin master
 6. Replace the `config.yml` in the `.circleci` directory with the one in the repository's root, or run the included `replace-config.sh` script
 7. Add your new GitHub repository as a new project on CircleCI, so your new orb will be continuously built and tested as you write it
 
-## Usage
+### Optional: setting up your local orb development environment
+If you haven't already installed the [CircleCI CLI](https://github.com/circleci-public/circleci-cli), created an orb namespace, and/or registered your orb name with the orb registry, this repository includes scripts to help you do so, all located in the `orb-setup-scripts` directory.
+
+1. Run the `install-cli.sh` script to install and configure the CircleCI CLI
+2. Run the `create-namespace.sh` script like this:
+
+```
+bash create-namespace.sh your-desired-namespace your-github-org
+```
+
+_Note: to create a namespace, you must have owner/admin privileges in the GitHub org to which it is linked_
+
+3. Run the `create-orb.sh` script like this:
+
+```
+bash create-orb.sh your-namespace/your-desired-orb-name
+```
+
+### Writing your orb
 This orb provides a basic directory/file structure for a decomposed orb (where commands, jobs, examples, and executors each live in their own YAML file). Create each of your commands, jobs, examples, and executors within the requisite folders in the `src` directory.
 
-On every new pushed commit, `src` will automatically be linted via `yamllint`, packed into a single `orb.yml` file, validated by the `circleci` CLI
+On every new pushed commit, `src` will automatically be linted via `yamllint`, packed into a single `orb.yml` file, validated by the `circleci` CLI, and, if valid, published, as a `dev` release, to the orb registry.

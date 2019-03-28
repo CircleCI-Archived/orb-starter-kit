@@ -9,7 +9,7 @@ Orbs are reusable [commands](https://circleci.com/docs/2.0/reusing-config/#autho
 2. Create a new blank GitHub repository for your orb
 3. Rename your downloaded, unzipped `orb-starter-kit-master` folder to match the name of your new GitHub repository
 4. `cd` into the folder and run `git init` to initalize it as a new local `git` repository
-5. Push your repository to the blank GitHub repostory you created:
+5. Push your new local `git` repository to the blank GitHub repository you created earlier:
 
 ```
 git remote add origin git@github.com:$YOUR_GITHUB_USERNAME/$YOUR_GITHUB_REPOSITORY.git

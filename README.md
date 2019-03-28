@@ -41,7 +41,7 @@ _**Note:** to create a namespace or an orb, you must have owner/admin privileges
 ### Writing your orb
 This orb provides a basic directory/file structure for a decomposed orb (where commands, jobs, examples, and executors each live in their own YAML file). Create each of your commands, jobs, examples, and executors within the requisite folders in the `src` directory.
 
-On every new pushed commit, `src` will automatically be linted via `yamllint`, packed into a single `orb.yml` file, validated by the `circleci` CLI, and, if valid, published, as a `dev` release, to the orb registry.
+On every new pushed commit, `src` will automatically be linted via `yamllint`, packed into a single `orb.yml` file, validated by the `circleci` CLI, and, if valid, published as a `dev` release to the orb registry.
 
 Following are some resources to help you build and test your orb:
 

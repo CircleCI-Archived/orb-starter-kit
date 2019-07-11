@@ -5,7 +5,7 @@ version: 2.1
 # you can use scripts/publish-alpha.sh to publish a @dev:alpha release
 orbs:
   # your-orb: your-namespace/your-orb@dev:alpha
-  orb-tools: circleci/orb-tools@8.5.0
+  orb-tools: circleci/orb-tools@8.27.3
 
 workflows:
   # this `lint-pack_validate_publish-dev` workflow will run on any commit
@@ -47,6 +47,7 @@ workflows:
       # the 2nd job (below) may also publish a production orb version
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-master
+          cleanup-tags: true
           ssh-fingerprints: # your SSH key fingerprint
           tag: master
           requires:
@@ -70,6 +71,8 @@ workflows:
   #     - orb-tools/dev-promote-prod:
   #         name: dev-promote-patch
   #         orb-name: circleci/orb-tools
+  #         ssh-fingerprints: # your SSH key fingerprint
+  #         cleanup-tags: true
   #         requires:
   #           # - your integration testing jobs go here
   #         filters:
@@ -82,6 +85,8 @@ workflows:
   #         name: dev-promote-minor
   #         release: minor
   #         orb-name: circleci/orb-tools
+  #         ssh-fingerprints: # your SSH key fingerprint
+  #         cleanup-tags: true
   #         requires:
   #           # - your integration testing jobs go here
   #         filters:
@@ -94,6 +99,8 @@ workflows:
   #         name: dev-promote-major
   #         release: major
   #         orb-name: circleci/orb-tools
+  #         ssh-fingerprints: # your SSH key fingerprint
+  #         cleanup-tags: true
   #         requires:
   #           # - your integration testing jobs go here
   #         filters:

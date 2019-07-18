@@ -93,15 +93,14 @@ rm ${CCI_ORBNAME}-key.pub
 echo
 echo "Modifying config template"
 _editConfig() {
-    # replace all instances of org name
-    sed -i "s/<org-name>/$CCI_ORGANIZATION/g"
     # replace all instances of namespace name
-    sed -i "s/<orb-namespace>/$CCI_NAMESPACE/g"
+    sed -i "s/<orb-namespace>/$CCI_NAMESPACE/g" config.yml
     # replace all instances of orb name
-    sed -i "s/<orb-name>/$CCI_ORBNAME/g"
+    sed -i "s/<orb-name>/$CCI_ORBNAME/g" config.yml
     # replace all instances of fingerprint value
-    sed -i "s/<orb-fingerprint>/$CCI_FINGERPRINT/g"
+    sed -i "s/<orb-fingerprint>/$CCI_FINGERPRINT/g" config.yml
 }
+_editConfig
 echo "Config has been modified"
 sleep 1
 echo "Replacing config in .circleci/config.yml"
@@ -119,7 +118,7 @@ git push
 echo
 echo
 echo
-echo "Congradulations! The setup is complete."
+echo "Congratulations! The setup is complete."
 echo "Your orb currently lives at: ${CCI_NAMESPACE}/${CCI_ORBNAME}@dev:alpha"
 echo "You may see the current progress here: LINK TO JOBS"
 echo "Begin to edit the files in the src directory to build your own orb."

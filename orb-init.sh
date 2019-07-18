@@ -46,7 +46,6 @@ echo "Create your peronal access token here: https://github.com/settings/tokens"
 sleep 3
 read -p "Enter GitHub Personal Access Token: " -r CCI_GH_TOKEN
 echo
-read -r # This read is here to fix a glitch where the next read was not waiting to accept input. This needs to be resolved but this workaround is functional
 echo
 echo -e "\e[1mSelect your Orb namespace. Each organization/user may claim one unique namespace.\e[0m"
 read -p "Enter Namespace: " -r CCI_NAMESPACE
@@ -65,7 +64,6 @@ echo
 circleci orb create "${CCI_NAMESPACE}/${CCI_ORBNAME}"
 echo
 sleep 1
-git add 
 echo
 echo "Creating deployment key."
 sleep 2
@@ -85,14 +83,45 @@ echo "Project added to CircleCI"
 echo
 sleep 1
 echo "Adding private key to CircleCI"
-CCI_ORB_KEY=$(cat "${CCI_ORBNAME}-key")
-curl -X POST --header "Content-Type: application/json" -d '{"hostname":"github.com","private_key":"'"$(cat "$CCI_ORBNAME-key")"'"}' "https://circleci.com/api/v1.1/project/github/"${CCI_ORGANIZATION}"/"${CCI_REPO}"/ssh-key?circle-token="${CCI_TOKEN}""
+curl -X POST --header "Content-Type: application/json" -d '{"hostname":"github.com","private_key":"'"$(cat "$CCI_ORBNAME-key")"'"}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/ssh-key?circle-token=${CCI_TOKEN}"
 echo "Adding public key to GitHub"
-curl --silent -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d '{"title":"orb-deploy","key":"'"$(cat "$CCI_ORBNAME-key.pub")"'","read_only":false}' "https://api.github.com/repos/"${CCI_ORGANIZATION}"/"${CCI_REPO}"/keys"
+curl --silent -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d '{"title":"orb-deploy","key":"'"$(cat "$CCI_ORBNAME-key.pub")"'","read_only":false}' "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys"
 echo  "Keys added"
+echo "Removing local keys"
+rm ${CCI_ORBNAME}-key
+rm ${CCI_ORBNAME}-key.pub
 echo
 echo "Modifying config template"
 _editConfig() {
-    
+    # replace all instances of org name
+    sed -i "s/<org-name>/$CCI_ORGANIZATION/g"
+    # replace all instances of namespace name
+    sed -i "s/<orb-namespace>/$CCI_NAMESPACE/g"
+    # replace all instances of orb name
+    sed -i "s/<orb-name>/$CCI_ORBNAME/g"
+    # replace all instances of fingerprint value
+    sed -i "s/<orb-fingerprint>/$CCI_FINGERPRINT/g"
 }
-
+echo "Config has been modified"
+sleep 1
+echo "Replacing config in .circleci/config.yml"
+rm -rf .circleci/config.yml
+mv config.yml .circleci
+echo
+echo "Producing development orb"
+circleci config pack src > orb.yml
+circleci orb publish orb.yml "${CCI_NAMESPACE}/${CCI_ORBNAME}@dev:alpha"
+rm -rf orb.yml
+echo "Commiting changes"
+git add .
+git commit -m "Setup complete"
+git push
+echo
+echo
+echo
+echo "Congradulations! The setup is complete."
+echo "Your orb currently lives at: ${CCI_NAMESPACE}/${CCI_ORBNAME}@dev:alpha"
+echo "You may see the current progress here: LINK TO JOBS"
+echo "Begin to edit the files in the src directory to build your own orb."
+echo "More information can be found in the readme"
+exit 0

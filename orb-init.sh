@@ -1,4 +1,6 @@
 #!/bin/bash
+clear
+echo
 echo "-------------------"
 echo -e "\e[38;5;45m\e[1mCircleCI Orb init\e[0m"
 echo "-------------------"
@@ -7,7 +9,7 @@ echo -e "\e[0mThis tool will help you create your first Orb with an automated bu
 echo "Follow along with the readme: https://github.com/CircleCI-Public/orb-starter-kit"
 sleep 2
 echo
-echo "\e[1mInstalling CircleCI CLI\e[0m"
+echo -e "\e[1mInstalling CircleCI CLI\e[0m"
 echo "This step will require SUDO to update the CLI"
 echo
 sleep 1
@@ -17,12 +19,13 @@ echo
 CCI_TOKEN=$(grep -Po "(?<=token: ).*" "$HOME"/.circleci/cli.yml)
 _checkGithubAuth() {
     echo "Testing authentication to GitHub.com"
-    if [ ! $(ssh -T git@github.com | grep -q "success") ]
+    if [ ! $(ssh -T git@github.com 2>&1| grep successful) ] #this does not work
     then
         echo -e "\e[1m\e[91mUnable to authenticate with GitHub\e[0m"
         echo "It doesn't appear you are authenticated with Github."
         echo "Ensure you have added your SSH keypair to enable pushing and pulling from this environment"
         echo "https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account"
+        sleep 2
         exit 1
     else
     echo -e "\e[92mAuthenticated\e[0m"
@@ -30,6 +33,16 @@ _checkGithubAuth() {
     fi
 }
 _checkGithubAuth
+_setGithubToken() {
+    echo "Create a GitHub Personal access token"
+    echo "The access token will be used to add a public key to your account automatically"
+    echo
+    sleep 1
+    echo "Create your peronal access token here: https://github.com/settings/tokens"
+    sleep 3
+    read -p "Enter GitHub Personal Access Token: " -r CCI_GH_TOKEN
+}
+_setGithubToken
 echo -e "\e[1mBegin Orb Creation\e[0m"
 echo
 sleep 1
@@ -51,30 +64,55 @@ _checkRepoName() {
     fi
 }
 _checkRepoName
+_setCreateRepo() {
+    GIT_REPO_CREATE_RES=$(curl -u "$CCI_ORGANIZATION":"$CCI_GH_TOKEN" -s -o /dev/null -w "%{http_code}" https://api.github.com/user/repos -X POST --header "Content-Type: application/json" -d '{"name":"'"$CCI_REPO"'","read_only":false}')
+    if [ $GIT_REPO_CREATE_RES == "201"]
+    then
+        echo "GitHub Repo created."
+        echo "https://github.com/$CCI_ORGANIZATION/$CCI_REPO"
+        echo "You will find your orb here shortly."
+        sleep 1
+        echo
+        echo "continuing..." 
+        sleep 2
+    elif [$GIT_REPO_CREATE_RES == "422"]
+        echo "The repo $CCI_REPO already exists"
+        echo "Please continue only if this is a new and empty repo created for this script."
+        sleep 1
+        read -p "Continue? [y/n]: " -n 1 -r
+        if [[ ! $REPLY =~ ^[Yy]$ ]]
+        then
+            echo "Exiting"
+            sleep 2
+            exit 1
+        fi
+    fi
+}
+_setCreateRepo
 echo
-echo "Initializing git"
+echo "Initializing local git repo"
+echo
+sleep 1
 git init
 git remote add origin git@github.com:"$CCI_ORGANIZATION"/"$CCI_REPO".git
 git add .
 git commit -m "initial commit"
+echo
+sleep 1
+echo "Pushing initial configuration to setup project on CircleCI"
+sleep 1
+echo
 git push -u origin master
 sleep 1
-echo "Create a GitHub Personal access token"
-echo "The access token will be used to add a public key to your account automatically"
-echo
-sleep 1
-echo "Create your peronal access token here: https://github.com/settings/tokens"
-sleep 3
-read -p "Enter GitHub Personal Access Token: " -r CCI_GH_TOKEN
-echo
 echo
 echo -e "\e[1mSelect your Orb namespace. Each organization/user may claim one unique namespace.\e[0m"
+echo "You may see an error if you have already previously claimed this namespace. This can safely be ignored for now."
 read -p "Enter Namespace: " -r CCI_NAMESPACE
 sleep 1
 circleci namespace create "$CCI_NAMESPACE" github "$CCI_ORGANIZATION"
 sleep 1
 echo
-echo -e "\e[1mSelect your Orb Name. Your Orb will live at ${CCI_NAMESPACE}/{ORB NAME}\e[0m"
+echo -e "\e[1mSelect your Orb Name. Your Orb will live at ${CCI_NAMESPACE}/\e[96m{ORB NAME}\e[0m"
 read -p "Enter Orb Name: " -r CCI_ORBNAME
 echo
 sleep 1

@@ -25,7 +25,13 @@ Before getting started you will need the the following things:
 
 Once the orb is complete, you will have two new Green workflows in your CircleCI account. The first one for the initial setup and the second one will have produced a development version of your orb which contains a sample Command, Executor, and Job. 
 
-You may now simply modify these examples and add your own. Any new commit to the repo will produce a development version of the Orb.
+You may now simply modify these examples and add your own. Any new commit to the repo automatically trigger a development pipeline
+
+#### What happens when I push a commit?
+
+The Orb CI/CD pipeline begins! Your Orb will go through the `lint-pack_validate_publish-dev` workflow. The code will first be linted, then passed to the "pack" job which will take your multiple partial yaml files and condense them into a single Orb.yml file, lastly, if specified within the `config.yml`, and defined integration tests will also be ran.
+
+Based on the branch you push to, the workflow will automatically create a development version of your orb for any branch except for "Master" which will create a production release which will be automatically incremented.
 
 ### Writing your orb
 This orb provides a basic directory/file structure for a decomposed orb (where commands, jobs, examples, and executors each live in their own YAML file). Create each of your commands, jobs, examples, and executors within the requisite folders in the `src` directory.

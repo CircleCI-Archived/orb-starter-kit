@@ -152,12 +152,35 @@ _followProject
 echo
 sleep 1
 echo "Adding private key to CircleCI"
-_CCIAddKey() {
-    CCI_KEY_RESPONSE=$(curl -s -X POST --header "Content-Type: application/json" -d '{"hostname":"github.com","private_key":"'"$(cat "$CCI_ORBNAME-key")"'"}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/ssh-key?circle-token=${CCI_TOKEN}")
+_CCIAddSecrets() {
+    # Add Private key to CircleCI.
+    CCI_KEY_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d '{"hostname":"github.com","private_key":"'"$(cat "$CCI_ORBNAME-key")"'"}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/ssh-key?circle-token=${CCI_TOKEN}")
+    if [ ! $CCI_KEY_RESPONSE == "201"]
+        echo "Failed to add private key to CircleCI. Please try again later."
+        exit 1
+    then
+    else
+        echo "...private key added to CircleCI"
+    fi
+    CCI_TOKEN_ENV_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d '{"CIRCLE_TOKEN":"'"$CCI_TOKEN"'"}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/envvar?circle-token=${CCI_TOKEN}")
+    if [ ! $CCI_TOKEN_ENV_RESPONSE == "201"]
+    echo "Failed to add CIRCLE_TOKEN env var to CircleCI. Please try again later."
+    exit 1
+    then
+    else
+        echo "...CIRCLE_TOKEN env var added to CircleCI"
+    fi
+    GIT_KEY_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d '{"title":"orb-deploy","key":"'"$(cat "$CCI_ORBNAME-key.pub")"'","read_only":false}' "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
+    if [ ! $GIT_KEY_RESPONSE == "201"]
+    echo "Failed to add CIRCLE_TOKEN env var to CircleCI. Please try again later."
+    exit 1
+    then
+    else
+        echo "...CIRCLE_TOKEN env var added to CircleCI"
+    fi
 }
-_CCIAddKey
-echo "Adding public key to GitHub"
-curl --silent -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d '{"title":"orb-deploy","key":"'"$(cat "$CCI_ORBNAME-key.pub")"'","read_only":false}' "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys" > /dev/null
+_CCIAddSecrets
+
 echo  "Keys added"
 echo "Removing local keys"
 rm ${CCI_ORBNAME}-key
@@ -190,7 +213,9 @@ git push
 echo
 echo
 echo
+echo "-------------------"
 echo -e "\e[1mCongratulations! The setup is complete.\e[0m"
+echo "-------------------"
 echo -e "Your orb currently lives at: \e[96m${CCI_NAMESPACE}\e[39m/\e[96m${CCI_ORBNAME}\e[39m@\e[92mdev:alpha\e[39m"
 echo "You may see the current progress here: https://circleci.com/gh/$CCI_ORGANIZATION/workflows/$CCI_REPO"
 echo "Begin to edit the files in the src directory to build your own orb."

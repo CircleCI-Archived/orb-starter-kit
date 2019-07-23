@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 # Load in functions
-for PARTIAL in ./_init/*; do
+for PARTIAL in ./_init/*.sh; do
     . $PARTIAL
 done
 _textIntro

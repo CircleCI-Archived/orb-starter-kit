@@ -1,7 +1,16 @@
 _orbSetup() {
     echo -e "\e[1mSelect your Orb namespace. Each organization/user may claim one unique namespace.\e[0m"
     echo "You may see an error if you have already previously claimed this namespace. This can safely be ignored for now."
+    echo
+    sleep 2
     read -p "Enter Namespace: " -r CCI_NAMESPACE
+    echo
+    if [ -z "$CCI_NAMESPACE" ]
+    then
+        echo
+        echo "Namespace missing. Try again"
+        _orbSetup
+    fi
     sleep 1
     circleci namespace create "$CCI_NAMESPACE" github "$CCI_ORGANIZATION"
     sleep 1

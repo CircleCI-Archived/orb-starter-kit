@@ -6,6 +6,7 @@ _checkOrgName() {
     read -p "Enter [y/n]: " -n 1 -r
     if [[ "$REPLY" =~ ^[Yy]$ ]]
     then
+        echo
         echo "Organization set"
     else
         _checkOrgName

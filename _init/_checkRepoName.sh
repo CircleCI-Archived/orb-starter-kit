@@ -4,6 +4,7 @@ _checkRepoName() {
     read -p "Enter [y/n]: " -n 1 -r
     if [[ "$REPLY" =~ ^[Yy]$ ]]
     then
+        echo
         CCI_REPO=$(basename "$PWD")
     else
         _checkRepoName

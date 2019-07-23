@@ -12,25 +12,25 @@ _CCIAddSecrets() {
     echo "Adding private key to CircleCI"
     CCI_KEY_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d '{"hostname":"github.com","private_key":"'"$(cat "$CCI_ORBNAME-key")"'"}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/ssh-key?circle-token=${CCI_TOKEN}")
     if [ ! $CCI_KEY_RESPONSE == "201"]
+    then
         echo "Failed to add private key to CircleCI. Please try again later."
         exit 1
-    then
     else
         echo "...private key added to CircleCI"
     fi
     CCI_TOKEN_ENV_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d '{"CIRCLE_TOKEN":"'"$CCI_TOKEN"'"}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/envvar?circle-token=${CCI_TOKEN}")
     if [ ! $CCI_TOKEN_ENV_RESPONSE == "201"]
+    then
     echo "Failed to add CIRCLE_TOKEN env var to CircleCI. Please try again later."
     exit 1
-    then
     else
         echo "...CIRCLE_TOKEN env var added to CircleCI"
     fi
     GIT_KEY_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d '{"title":"orb-deploy","key":"'"$(cat "$CCI_ORBNAME-key.pub")"'","read_only":false}' "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
     if [ ! $GIT_KEY_RESPONSE == "201"]
+    then
     echo "Failed to add CIRCLE_TOKEN env var to CircleCI. Please try again later."
     exit 1
-    then
     else
         echo "...CIRCLE_TOKEN env var added to CircleCI"
     fi

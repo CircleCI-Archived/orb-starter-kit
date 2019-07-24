@@ -19,7 +19,7 @@ _CCIAddSecrets() {
     else
         echo "...private key added to CircleCI"
     fi
-    CCI_TOKEN_ENV_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d '{"CIRCLE_TOKEN":"'"$CCI_TOKEN"'"}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/envvar?circle-token=${CCI_TOKEN}")
+    CCI_TOKEN_ENV_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d '{"CIRCLE_TOKEN":'\"$CCI_TOKEN\"'}' "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/envvar?circle-token=${CCI_TOKEN}")
     if [ ! "$CCI_TOKEN_ENV_RESPONSE" == "201" ]
     then
     echo "Failed to add CIRCLE_TOKEN env var to CircleCI. Please try again later."

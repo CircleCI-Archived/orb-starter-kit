@@ -42,4 +42,4 @@ git add .
 git commit -m "Setup complete"
 git push
 _textComplete
-exit 0
+_cleanup

@@ -10,6 +10,7 @@ _checkOrgName() {
         echo
         echo "Organization set"
     else
+    then
         _checkOrgName
     fi
 }

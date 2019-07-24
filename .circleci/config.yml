@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   orb-tools: circleci/orb-tools@8.27.3
-  shellcheck: circleci/shellcheck@1.3.3
+  shellcheck: circleci/shellcheck@1.3.14
 
 jobs:
   getting-started:

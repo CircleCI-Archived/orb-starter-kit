@@ -2,7 +2,7 @@
 clear
 # Load in functions
 for PARTIAL in ./_init/*.sh; do
-    . $PARTIAL
+    . "$PARTIAL"
 done
 _textIntro
 sleep 1

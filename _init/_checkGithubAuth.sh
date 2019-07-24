@@ -2,7 +2,7 @@
 _checkGithubAuth() {
     echo "Testing authentication to GitHub.com"
     GITAUTHCHECK=$(ssh -T git@github.com 2>&1| grep successful)
-    if [ -z $GITAUTHCHECK ]
+    if [ -z "$GITAUTHCHECK" ]
     then
         echo -e "\e[1m\e[91mUnable to authenticate with GitHub\e[0m"
         echo "It doesn't appear you are authenticated with Github."

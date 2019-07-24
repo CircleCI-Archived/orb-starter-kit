@@ -19,5 +19,6 @@ workflows:
     jobs:
       - getting-started
       - orb-tools/lint
-      - shellcheck/check
+      - shellcheck/check:
+          ignore: "SC1090, SC2034"
 

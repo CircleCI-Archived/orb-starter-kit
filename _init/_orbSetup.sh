@@ -1,3 +1,4 @@
+#!/bin/bash
 _orbSetup() {
     echo -e "\e[1mSelect your Orb namespace. Each organization/user may claim one unique namespace.\e[0m"
     echo "You may see an error if you have already previously claimed this namespace. This can safely be ignored for now."

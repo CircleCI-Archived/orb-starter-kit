@@ -1,3 +1,4 @@
+#!/bin/bash
 _setGithubToken() {
     echo "Create a GitHub Personal access token"
     echo "The access token will be used to add a public key to your account automatically"

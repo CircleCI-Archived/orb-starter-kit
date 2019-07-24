@@ -1,3 +1,4 @@
+#!/bin/bash
 _checkOrgName() {
     echo -e "\e[1mEnter your GitHub Organization name\e[0m"
     read -p "Enter GitHub Orginzation name: " -r CCI_ORGANIZATION

@@ -1,3 +1,4 @@
+#!/bin/bash
 _gitSetup() {
     echo "Initializing local git repo"
     echo

@@ -1,3 +1,4 @@
+#!/bin/bash
 _checkGithubAuth() {
     echo "Testing authentication to GitHub.com"
     GITAUTHCHECK=$(ssh -T git@github.com 2>&1| grep successful)

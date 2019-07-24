@@ -1,3 +1,4 @@
+#!/bin/bash
 _checkRepoName() {
     echo
     echo -e "\e[1mThe repoistory name is currently set to \e[36m$(basename "$PWD")\e[39m is this correct?\e[0m"

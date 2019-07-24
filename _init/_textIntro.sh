@@ -1,3 +1,4 @@
+#!/bin/bash
 _textIntro() {
     echo
     echo "-------------------"

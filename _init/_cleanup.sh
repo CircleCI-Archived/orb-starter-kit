@@ -1,3 +1,4 @@
+#!/bin/bash
 _cleanup() {
     echo "     ...cleaning up"
     rm -rf _init

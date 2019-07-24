@@ -1,3 +1,4 @@
+#!/bin/bash
 _editConfig() {
     echo "Modifying config template"
     # replace all instances of namespace name

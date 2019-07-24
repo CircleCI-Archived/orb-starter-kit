@@ -1,3 +1,4 @@
+#!/bin/bash
 _setCreateRepo() {
     GIT_REPO_CREATE_RES=$(curl -u "$CCI_ORGANIZATION":"$CCI_GH_TOKEN" -s -o /dev/null -w "%{http_code}" https://api.github.com/user/repos -X POST --header "Content-Type: application/json" -d '{"name":"'"$CCI_REPO"'","read_only":false}')
     if [ "$GIT_REPO_CREATE_RES" == "201" ]

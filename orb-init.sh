@@ -39,7 +39,7 @@ circleci orb publish orb.yml "${CCI_NAMESPACE}/${CCI_ORBNAME}@dev:alpha"
 rm -rf orb.yml
 echo "Commiting changes"
 git add .
-git commit -m "\e[1m\e[32mSetup complete\e[0m"
+git commit -m "Setup complete"
 git push
 _textComplete
 exit 0

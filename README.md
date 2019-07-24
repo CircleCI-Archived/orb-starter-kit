@@ -41,3 +41,11 @@ Following are some resources to help you build and test your orb:
 - [Tips for writing your first orb](https://circleci.com/blog/tips-for-writing-your-first-orb/)
 - [How to make an easy and valuable open source contribution with CircleCI orbs](https://circleci.com/blog/how-to-make-an-easy-and-valuable-open-source-contribution-with-circleci-orbs/)
 - Creating automated build, test, and deploy workflows for orbs: [part 1](https://circleci.com/blog/creating-automated-build-test-and-deploy-workflows-for-orbs/), [part 2](https://circleci.com/blog/creating-automated-build-test-and-deploy-workflows-for-orbs-part-2/)
+
+### Permissions
+
+Explaination of all permissions required for the script.
+
+* **sudo** - The CircleCI CLI Update command will request sudo permissions to update.
+* **GitHub personal access token** - Used to automatically create the repository for you. Will require full "repo" access.
+* **SSH keys** - A public key is added to the repo on GitHub, CircleCI will hold the private key. This is used to automatically create tagged commits from within the Workflow to enable integration testing.

@@ -29,7 +29,7 @@ _CCIAddSecrets() {
     GIT_KEY_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d '{"title":"orb-deploy","key":"'"$(cat "$CCI_ORBNAME-key.pub")"'","read_only":false}' "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
     if [ ! $GIT_KEY_RESPONSE == "201" ]
     then
-    echo "Failed to add CIRCLE_TOKEN env var to CircleCI. Please try again later."
+    echo "Failed to add public key to Github. Please try again later."
     exit 1
     else
         echo "...CIRCLE_TOKEN env var added to CircleCI"

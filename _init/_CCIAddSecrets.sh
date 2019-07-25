@@ -3,12 +3,15 @@ _CCIAddSecrets() {
     echo -e "\e[1mCreating deployment key.\e[0m"
     sleep 2
     echo "The private key will automatically be added to the CircleCI repository for this project, and the public key will be added to the GitHub org. This will allow the Workflow to publish tagged commits to trigger integration tests and production Orb deployments."
+    # Generate SSH key pair
     ssh-keygen -t rsa -b 4096 -m PEM -N "" -f "${CCI_ORBNAME}-key"
     echo
     echo "${CCI_ORBNAME}-key keypair has been created"
+    # Generate fingerprint locally
     CCI_FINGERPRINT=$(ssh-keygen -E md5 -lf "${CCI_ORBNAME}-key" | grep -Po "(?<=MD5:).+?(?=\s)")
     echo "Private key fingerprint: $CCI_FINGERPRINT"
     echo
+    sleep 1
     # Add Private key to CircleCI.
     echo "Adding private key to CircleCI"
     CCI_KEY_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d "{\"hostname\":\"github.com\",\"private_key\":\"$(cat "$CCI_ORBNAME-key")\"}" "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/ssh-key?circle-token=${CCI_TOKEN}")
@@ -19,6 +22,9 @@ _CCIAddSecrets() {
     else
         echo "...private key added to CircleCI"
     fi
+    # Add CIRCLE_TOKEN env var to CircleCI
+    echo
+    echo "Adding CIRCLE_TOKEN env var to project on CircleCI"
     CCI_TOKEN_ENV_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST --header "Content-Type: application/json" -d "{\"name\":\"CIRCLE_TOKEN\", \"value\":\"$CCI_TOKEN\"}" "https://circleci.com/api/v1.1/project/github/${CCI_ORGANIZATION}/${CCI_REPO}/envvar?circle-token=${CCI_TOKEN}")
     if [ ! "$CCI_TOKEN_ENV_RESPONSE" == "201" ]
     then
@@ -27,14 +33,17 @@ _CCIAddSecrets() {
     else
         echo "...CIRCLE_TOKEN env var added to CircleCI"
     fi
-    GIT_KEY_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
-    if [ ! "$GIT_KEY_RESPONSE" == "201" ]
+    # Adding public key to GitHub.
+    echo "Adding public key to GitHub."
+    GIT_KEY_RESPONSE=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
+    GIT_KEY_STATUS=$(echo $GIT_KEY_RESPONSE | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
+    if [ ! "$GIT_KEY_STATUS" == "201" ]
     then
     echo "Failed to add public key to Github. Please try again later."
-    sleep 1
-    echo "Fetching error (this does attempt the call a second time)"
-    sleep 2
-    curl -s -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys"
+    echo "Printing error"
+    echo $GIT_KEY_RESPONSE
+    echo
+    echo $GIT_KEY_STATUS
     exit 1
     else
         echo "...Public key added to GitHub."

@@ -31,9 +31,13 @@ _CCIAddSecrets() {
     if [ ! "$GIT_KEY_RESPONSE" == "201" ]
     then
     echo "Failed to add public key to Github. Please try again later."
+    sleep 1
+    echo "Fetching error (this does attempt the call a second time)"
+    sleep 2
+    curl -s -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" https://api.github.com/user -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys"
     exit 1
     else
-        echo "...CIRCLE_TOKEN env var added to CircleCI"
+        echo "...Public key added to GitHub."
     fi
     echo  "Keys added"
     echo "Removing local keys"

@@ -35,7 +35,7 @@ _CCIAddSecrets() {
     fi
     # Adding public key to GitHub.
     echo "Adding public key to GitHub."
-    GIT_KEY_RESPONSE=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
+    GIT_KEY_RESPONSE=$(curl --silent --write-out "HTTPSTATUS:%{http_code}" -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
     GIT_KEY_STATUS=$(echo $GIT_KEY_RESPONSE | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
     if [ ! "$GIT_KEY_STATUS" == "201" ]
     then

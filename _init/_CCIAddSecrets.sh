@@ -36,15 +36,15 @@ _CCIAddSecrets() {
     # Adding public key to GitHub.
     echo "Adding public key to GitHub."
     GIT_KEY_RESPONSE=$(curl --silent -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
-    if [[ ! "$GIT_KEY_RESPONSE" ~= "\"verified\": true" ]]
+    if "$GIT_KEY_RESPONSE" | grep -q "\"verified\": true";
     then
-    echo "Failed to add public key to Github. Please try again later."
-    echo "Printing error"
-    echo $GIT_KEY_RESPONSE
-    echo
-    exit 1
-    else
         echo "...Public key added to GitHub."
+    else
+        echo "Failed to add public key to Github. Please try again later."
+        echo "Printing error"
+        echo "$GIT_KEY_RESPONSE"
+        echo
+        exit 1
     fi
     echo  "Keys added"
     echo "Removing local keys"

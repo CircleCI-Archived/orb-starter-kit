@@ -1,4 +1,5 @@
-# Orb Starter Kit ![CircleCI status](https://circleci.com/gh/CircleCI-Public/orb-starter-kit.svg "CircleCI status") [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+# Orb Starter Kit![CircleCI status](https://circleci.com/gh/CircleCI-Public/orb-starter-kit.svg "CircleCI status") [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+
 This orb starter kit will help you write your own orb.
 
 Orbs are reusable [commands](https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-commands), [executors](https://circleci.com/docs/2.0/reusing-config/#authoring-reusable-executors), and [jobs](https://circleci.com/docs/2.0/reusing-config/#jobs-defined-in-an-orb) (as well as [usage examples](https://github.com/CircleCI-Public/config-preview-sdk/blob/v2.1/docs/usage-examples.md))—snippets of CircleCI configuration—that can be shared across teams and projects. See [CircleCI Orbs](https://circleci.com/orbs), [Explore Orbs](https://circleci.com/orbs/registry), [Creating Orbs](https://circleci.com/docs/2.0/creating-orbs), and [Using Orbs](https://circleci.com/docs/2.0/using-orbs) for further information.
@@ -49,3 +50,68 @@ Explaination of all permissions required for the script.
 * **sudo** - The CircleCI CLI Update command will request sudo permissions to update.
 * **GitHub personal access token** - Used to automatically create the repository for you. Will require full "repo" access.
 * **SSH keys** - A public key is added to the repo on GitHub, CircleCI will hold the private key. This is used to automatically create tagged commits from within the Workflow to enable integration testing.
+
+<details>
+<Summary>Preview "Hello-World" Orb produced by this repo by default.</Summary>
+
+```
+commands:
+  greet:
+    description: |
+      Replace this text with a description for this command. # What will this command do? # Descriptions should be short, simple, and clear.
+    parameters:
+      greeting:
+        default: Hello
+        description: Select a proper greeting
+        type: string
+    steps:
+    - run:
+        command: echo << parameters.greeting >> world
+        name: Hello World
+description: |
+  Sample orb description # What will your orb allow users to do? # Descriptions should be short, simple, and clear.
+examples:
+  example:
+    description: |
+      Sample example description. # What will this example document? # Descriptions should be short, simple, and clear.
+    usage:
+      jobs:
+        build:
+          machine: true
+          steps:
+          - foo/hello:
+              username: Anna
+      orbs:
+        foo: bar/foo@1.2.3
+      version: 2.1
+executors:
+  default:
+    description: |
+      This is a sample executor using Docker and Node. # What is this executor? # Descriptions should be short, simple, and clear.
+    docker:
+    - image: circleci/node:<<parameters.tag>>
+    parameters:
+      tag:
+        default: latest
+        description: |
+          Pick a specific circleci/node image variant: https://hub.docker.com/r/circleci/node/tags
+        type: string
+jobs:
+  hello:
+    description: |
+      # What will this job do? # Descriptions should be short, simple, and clear.
+    executor: default
+    parameters:
+      greeting:
+        default: Hello
+        description: Select a proper greeting
+        type: string
+    steps:
+    - greet:
+        greeting: << parameters.greeting >>
+orbs:
+  hello: circleci/hello-build@0.0.5
+version: 2.1
+```
+
+</details>

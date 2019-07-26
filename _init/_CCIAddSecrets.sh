@@ -48,7 +48,7 @@ _CCIAddSecrets() {
     fi
     echo  "Keys added"
     echo "Removing local keys"
-    rm ${CCI_ORBNAME}-key
-    rm ${CCI_ORBNAME}-key.pub
+    rm "${CCI_ORBNAME}-key"
+    rm "${CCI_ORBNAME}-key.pub"
     echo
 }

@@ -4,7 +4,7 @@ version: 2.1
 # release must exist; you'll need to publish manually at least once)
 # you can use scripts/publish-alpha.sh to publish a @dev:alpha release
 orbs:
-  # your-orb: your-namespace/your-orb@dev:alpha
+  <orb-name>: <orb-namespace>/<orb-name>@dev:alpha
   orb-tools: circleci/orb-tools@8.27.3
 
 workflows:
@@ -26,7 +26,7 @@ workflows:
       # store CIRCLE_TOKEN as a project env var or Contexts resource
       # if using Contexts, add your context below
       - orb-tools/publish-dev:
-          orb-name: # namespace/orb-name, e.g., circleci/orb-starter-kit
+          orb-name: <orb-namespace>/<orb-name>
           requires:
             - orb-tools/pack
 
@@ -36,7 +36,7 @@ workflows:
       # key in CircleCI via SSH Permissions, with github.com as Hostname)
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-dev
-          ssh-fingerprints: # your SSH key fingerprint
+          ssh-fingerprints: <orb-fingerprint>
           requires:
             - orb-tools/publish-dev
           filters:
@@ -48,7 +48,7 @@ workflows:
       - orb-tools/trigger-integration-workflow:
           name: trigger-integration-master
           cleanup-tags: true
-          ssh-fingerprints: # your SSH key fingerprint
+          ssh-fingerprints: <orb-fingerprint>
           tag: master
           requires:
             - orb-tools/publish-dev

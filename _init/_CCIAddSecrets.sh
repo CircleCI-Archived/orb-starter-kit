@@ -35,8 +35,8 @@ _CCIAddSecrets() {
     fi
     # Adding public key to GitHub.
     echo "Adding public key to GitHub."
-    GIT_KEY_RESPONSE=$(curl --silent -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys")
-    if "$GIT_KEY_RESPONSE" | grep -q "\"verified\": true";
+    GIT_KEY_RESPONSE=$(curl --silent -u "$CCI_ORGANIZATION:$CCI_GH_TOKEN" -X POST --header "Content-Type: application/json" -d "{\"title\":\"orb-deploy\",\"key\":\"$(cat "$CCI_ORBNAME-key.pub")\",\"read_only\":false}" "https://api.github.com/repos/${CCI_ORGANIZATION}/${CCI_REPO}/keys" | grep -q "\"verified\": true")
+    if [ -z "$GIT_KEY_RESPONSE" ];
     then
         echo "...Public key added to GitHub."
     else

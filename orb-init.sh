@@ -17,6 +17,8 @@ _checkRepoName
 _setCreateRepo
 echo
 _gitSetup
+printf "\e[1mSwitching to Alhpa branch\e[0m\n"
+git checkout -b Alpha
 echo
 _orbSetup
 echo
@@ -37,9 +39,10 @@ echo "Producing development orb"
 circleci config pack src > orb.yml
 circleci orb publish orb.yml "${CCI_NAMESPACE}/${CCI_ORBNAME}@dev:alpha"
 rm -rf orb.yml
-echo "Commiting changes"
+echo "Commiting changes to Alpha branch"
+git checkout -b Alpha
 git add .
 git commit -m "Setup complete"
-git push
+git push -u origin Alpha
 _textComplete
 _cleanup

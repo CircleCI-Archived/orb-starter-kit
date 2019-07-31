@@ -8,6 +8,6 @@ _followProject() {
         echo
         exit 1
     else
-        echo -e "\e[32mProject added to CircleCI\e[0m"
+        printf "\e[32mProject added to CircleCI\e[0m\n"
     fi
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 _orbSetup() {
-    echo -e "\e[1mSelect your Orb namespace. Each organization/user may claim one unique namespace.\e[0m"
+    printf "\e[1mSelect your Orb namespace. Each organization/user may claim one unique namespace.\e[0m\n"
     echo "You may see an error if you have already previously claimed this namespace. This can safely be ignored for now."
     echo
     sleep 2
@@ -16,7 +16,7 @@ _orbSetup() {
     circleci namespace create "$CCI_NAMESPACE" github "$CCI_ORGANIZATION"
     sleep 1
     echo
-    echo -e "\e[1mSelect your Orb Name. Your Orb will live at ${CCI_NAMESPACE}/\e[96m{ORB NAME}\e[0m"
+    printf "\e[1mSelect your Orb Name. Your Orb will live at ${CCI_NAMESPACE}/\e[96m{ORB NAME}\e[0m\n"
     read -p "Enter Orb Name: " -r CCI_ORBNAME
     echo
     sleep 1

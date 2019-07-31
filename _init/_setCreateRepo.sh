@@ -20,6 +20,7 @@ _setCreateRepo() {
         echo
         sleep 1
         echo "$GIT_RES_BODY"
-        echo 1
+        exit 1
+
     fi
 }

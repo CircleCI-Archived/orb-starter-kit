@@ -1,6 +1,6 @@
 #!/bin/bash
 _CCIAddSecrets() {
-    echo -e "\e[1mCreating deployment key.\e[0m"
+    printf "\e[1mCreating deployment key.\e[0m\n"
     sleep 2
     echo "The private key will automatically be added to the CircleCI repository for this project, and the public key will be added to the GitHub org. This will allow the Workflow to publish tagged commits to trigger integration tests and production Orb deployments."
     # Generate SSH key pair

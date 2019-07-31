@@ -9,7 +9,7 @@ sleep 1
 _installCLI
 _checkGithubAuth
 _setGithubToken
-echo -e "\e[1mBegin Orb Creation\e[0m"
+printf "\e[1mBegin Orb Creation\e[0m\n"
 echo
 sleep 1
 _checkOrgName
@@ -21,7 +21,7 @@ echo
 _orbSetup
 echo
 sleep 1
-echo -e "\e[1mAdding project to CircleCI\e[0m"
+printf "\e[1mAdding project to CircleCI\e[0m\n"
 sleep 2
 _followProject
 echo

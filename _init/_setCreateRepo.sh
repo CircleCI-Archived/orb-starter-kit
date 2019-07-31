@@ -21,6 +21,5 @@ _setCreateRepo() {
         sleep 1
         echo "$GIT_RES_BODY"
         exit 1
-
     fi
 }

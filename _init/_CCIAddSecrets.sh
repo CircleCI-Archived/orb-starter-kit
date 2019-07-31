@@ -8,7 +8,7 @@ _CCIAddSecrets() {
     echo
     echo "${CCI_ORBNAME}-key keypair has been created"
     # Generate fingerprint locally
-    CCI_FINGERPRINT=$(ssh-keygen -E md5 -lf "${CCI_ORBNAME}-key" | grep -Po "(?<=MD5:).+?(?=\s)")
+    CCI_FINGERPRINT=$(ssh-keygen -E md5 -lf "${CCI_ORBNAME}-key" | awk '{print $2}' | sed 's/^....//')
     echo "Private key fingerprint: $CCI_FINGERPRINT"
     echo
     sleep 1

@@ -3,5 +3,6 @@ _installCLI() {
     curl -fLSs https://circle.ci/cli | sudo bash && circleci setup
     sleep 1
     echo
-    CCI_TOKEN=$(grep -Po "(?<=token: ).*" "$HOME"/.circleci/cli.yml)
+    echo "setting token internally"
+    CCI_TOKEN=$(awk '/token:/ {print $2}' "$HOME/.circleci/cli.yml")
 }

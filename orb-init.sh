@@ -7,6 +7,7 @@ done
 _textIntro
 sleep 1
 _installCLI
+printf "\e[1mTesting authentication to GitHub.com\e[0m\n"
 _checkGithubAuth
 _setGithubToken
 printf "\e[1mBegin Orb Creation\e[0m\n"

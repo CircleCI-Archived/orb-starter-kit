@@ -1,7 +1,6 @@
 #!/bin/bash
 _checkGithubAuth() {
-    echo "Testing authentication to GitHub.com"
-    GITAUTHCHECK=$(ssh -T git@github.com 2>&1| grep successful)
+    GITAUTHCHECK=$(ssh -T git@github.com 2>&1| grep -e successful)
     if [ -z "$GITAUTHCHECK" ]
     then
         printf "\e[1m\e[91mUnable to authenticate with GitHub\e[0m\n"

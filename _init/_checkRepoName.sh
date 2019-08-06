@@ -9,7 +9,8 @@ _checkRepoName() {
         CCI_REPO=$(basename "$PWD")
     elif [[ "$REPLY" =~ ^[Nn]$ ]]
     then
-    read -p "Enter GitHub repoistory name: " -r CCI_ORGANIZATION
+    echo
+    read -p "Enter GitHub repoistory name: " -r CCI_REPO
     else
         _checkRepoName
     fi

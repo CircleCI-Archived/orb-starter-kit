@@ -20,5 +20,5 @@ workflows:
       - getting-started
       - orb-tools/lint
       - shellcheck/check:
-          ignore: 'SC1090,SC2034,SC2059,SC2001'
+          ignore: 'SC1090,SC2034,SC2059,SC2001,SC2143,SC2046'
 

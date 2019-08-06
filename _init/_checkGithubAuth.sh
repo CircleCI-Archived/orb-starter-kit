@@ -1,7 +1,7 @@
 #!/bin/bash
 _checkGithubAuth() {
-    GITAUTHCHECK=$(ssh -T git@github.com 2>&1| grep -e successful)
-    if [ -z "$GITAUTHCHECK" ]
+    GITAUTHCHECK=$(ssh -T git@github.com 2>&1)
+    if [ -z $(echo "$GITAUTHCHECK" | grep -o "success") ]
     then
         printf "\e[1m\e[91mUnable to authenticate with GitHub\e[0m\n"
         echo "It doesn't appear you are authenticated with Github."
@@ -10,7 +10,9 @@ _checkGithubAuth() {
         sleep 2
         exit 1
     else
+    GITHUB_USER=$(echo "$GITAUTHCHECK" | cut -d " " -f 2 | tr -d "!")
     printf "\e[92mAuthenticated\e[0m\n"
+    echo "Welcome $GITHUB_USER"
     echo
     fi
 }

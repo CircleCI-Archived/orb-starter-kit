@@ -20,7 +20,7 @@ Before getting started you will need the the following things:
 ## Usage
 
 ### Getting started
-1. Download (don't fork/clone!) this repository and unzip it
+1. Download (don't fork/clone!) this repository and unzip it. [Download here](https://github.com/CircleCI-Public/orb-starter-kit/archive/master.zip)
 2. Rename the folder to the name you would like to give your orb
 3. Run the `orb-init.sh` script to begin.
 

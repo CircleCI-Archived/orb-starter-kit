@@ -6,7 +6,7 @@ Orbs are reusable [commands](https://circleci.com/docs/2.0/reusing-config/#autho
 
 ## What is in this kit?
 
-In this Orb-Starter-Kit you will find an automated setup to create a development pipeline to build your orb automatically. Once setup is complete you will have a functioning hello-world orb that is automatically build and released on each commit. Commits to the "Master" branch will trigger production Orb releases and other branches will create development versions of your Orb for testing.
+In this Orb-Starter-Kit you will find an automated setup to create a development pipeline to build your orb automatically. Once setup is complete you will have a functioning hello-world orb that is automatically build and released on each commit. Commits to the `master` branch will trigger production Orb releases and other branches will create development versions of your Orb for testing.
 
 ### Prerequisites
 

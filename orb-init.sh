@@ -1,5 +1,7 @@
 #!/bin/bash
 clear
+# remove git folder in the event a user clones the repo
+rm -rf .git
 # Load in functions
 for PARTIAL in ./_init/*.sh; do
     . "$PARTIAL"

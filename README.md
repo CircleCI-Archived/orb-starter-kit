@@ -13,8 +13,8 @@ In this Orb-Starter-Kit you will find an automated setup to create a development
 Before getting started you will need the the following things:
 1. A CircleCI account.
 2. Git installed and configured locally.
-3. A CircleCI [Personal API Token](https://circleci.com/docs/2.0/managing-api-tokens/#creating-a-personal-api-token)
-4. A GitHub [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)
+3. A CircleCI [Personal API Token](https://circleci.com/docs/2.0/managing-api-tokens/#creating-a-personal-api-token) (Must be Org admin to claim a namespace and publish production Orbs)
+4. A GitHub [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) (Requires Repo access and Admin Org if pushing to an Org that is not your personal account)
 
 
 ## Usage
@@ -25,7 +25,24 @@ Before getting started you will need the the following things:
 2. Rename the folder to the name you would like to give your orb
 
 3. Run the `orb-init.sh` script to begin.
-> You will be asked a series of questions to configure and automate the creation of a new GitHub repo, modifying the included source config, adding the project to CircleCI and creating your Orb.
+> The Orb Init script will automate the following tasks:
+>  * Install and update the CircleCI CLI
+> * Request a CircleCI API token if none is currently set.
+> * Set the target GitHub organization
+> * Set the target repo name (based off the folder name by default)
+> * Create the GitHub repository.
+> * Follow the project on CircleCI
+> * Create a public/private key pair.
+> * Store public key on GitHub
+> * Store private key on CircleCI (This gives the starter kit the ability to push tags back to GitHub, currently utilized to automatically trigger integration testing and deployment workflows).
+>  * Delete these keys locally.
+>  * Create an Alpha branch
+>  * Modify and replace config.yml file with pre-configured Orb Starter Kit config.
+>  * Commit new branch with changes to GitHub
+>  * Clean up - The script will remove itself from the repo for the next commit.
+>
+> At this point the script will provide you a link to your new running Workflow on CircleCI which will be automatically building a "hello world" orb, which will be available at `<your namespace>/<your orb>@dev:Alpha`
+  
 
 4. Begin editing.
 > Once the script has finished you may edit the contents of the /src folder to customize your orb.

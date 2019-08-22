@@ -47,7 +47,12 @@ Before getting started you will need the the following things:
 4. Begin editing.
 > Once the script has finished you may edit the contents of the /src folder to customize your orb.
 
-5. Publish!
+5. Create your dev Orb!
+> All commits to non-master branches will automatically result in the creation of a development orb under than branch. It is recommended currently (changes incoming ) all changes be made under the automatically created Alpha branch.
+
+6. Publish!
+> Merge to master and automatically publish a new production version of your Orb!
+>
 > You will need to manually publish the production version of your Orb the first time it is created. This is not needed on subsequent pushes. *NOTE* currently _all_ 'major' changes as defined by the Orbs-Tool Orb requires manual publishing. All minor and patch chages will be automatically published.
 
 Once the orb is complete, you will have two new Green workflows in your CircleCI account. The first one for the initial setup and the second one will have produced a development version of your orb which contains a sample Command, Executor, and Job. 

@@ -1,4 +1,4 @@
-# Orb Starter Kit![CircleCI status](https://circleci.com/gh/CircleCI-Public/orb-starter-kit.svg "CircleCI status") [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+# Orb Starter Kit ![CircleCI status](https://circleci.com/gh/CircleCI-Public/orb-starter-kit.svg "CircleCI status") [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 This orb starter kit will help you write your own orb.
 
@@ -85,7 +85,7 @@ Explaination of all permissions required for the script.
 <details>
 <Summary>Preview "Hello-World" Orb produced by this repo by default.</Summary>
 
-```
+```yaml
 commands:
   greet:
     description: |

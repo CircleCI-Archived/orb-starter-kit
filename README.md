@@ -1,4 +1,4 @@
-# Orb Starter Kit![CircleCI status](https://circleci.com/gh/CircleCI-Public/orb-starter-kit.svg "CircleCI status") [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+# Orb Starter Kit  ![CircleCI status](https://circleci.com/gh/CircleCI-Public/orb-starter-kit.svg "CircleCI status") [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 This orb starter kit will help you write your own orb.
 
@@ -13,8 +13,8 @@ In this Orb-Starter-Kit you will find an automated setup to create a development
 Before getting started you will need the the following things:
 1. A CircleCI account.
 2. Git installed and configured locally.
-3. A CircleCI [Personal API Token](https://circleci.com/docs/2.0/managing-api-tokens/#creating-a-personal-api-token) (Must be Org admin to claim a namespace and publish production Orbs)
-4. A GitHub [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) (Requires Repo access and Admin Org if pushing to an Org that is not your personal account)
+3. A CircleCI [Personal API Token](https://circleci.com/docs/2.0/managing-api-tokens/#creating-a-personal-api-token) (Must be Org admin to claim a namespace and publish production Orbs).
+4. A GitHub [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) (Requires Repo access and Admin Org if pushing to an Org that is not your personal account).
 
 
 ## Usage
@@ -22,26 +22,26 @@ Before getting started you will need the the following things:
 ### Getting started
 1. Download this repository and unzip it. [Download here](https://github.com/CircleCI-Public/orb-starter-kit/archive/master.zip)
 
-2. Rename the folder to the name you would like to give your orb
+2. Rename the folder to the name you would like to give your orb.
 
 3. Run the `orb-init.sh` script to begin.
 > The Orb Init script will automate the following tasks:
->  * Install and update the CircleCI CLI
+>  * Install and update the CircleCI CLI.
 > * Request a CircleCI API token if none is currently set.
-> * Set the target GitHub organization
+> * Set the target GitHub organization.
 > * Set the target repo name (based off the folder name by default)
 > * Create the GitHub repository.
-> * Follow the project on CircleCI
+> * Follow the project on CircleCI.
 > * Create a public/private key pair.
-> * Store public key on GitHub
+> * Store public key on GitHub.
 > * Store private key on CircleCI (This gives the starter kit the ability to push tags back to GitHub, currently utilized to automatically trigger integration testing and deployment workflows).
 >  * Delete these keys locally.
->  * Create an Alpha branch
+>  * Create an Alpha branch.
 >  * Modify and replace config.yml file with pre-configured Orb Starter Kit config.
->  * Commit new branch with changes to GitHub
+>  * Commit new branch with changes to GitHub.
 >  * Clean up - The script will remove itself from the repo for the next commit.
 >
-> At this point the script will provide you a link to your new running Workflow on CircleCI which will be automatically building a "hello world" orb, which will be available at `<your namespace>/<your orb>@dev:Alpha`
+> At this point the script will provide you a link to your new running Workflow on CircleCI which will be automatically building a "hello world" orb, which will be available at `<your namespace>/<your orb>@dev:Alpha`.
   
 
 4. Begin editing.
@@ -57,7 +57,7 @@ Before getting started you will need the the following things:
 
 Once the orb is complete, you will have two new Green workflows in your CircleCI account. The first one for the initial setup and the second one will have produced a development version of your orb which contains a sample Command, Executor, and Job. 
 
-You may now simply modify these examples and add your own. Any new commit to the repo automatically trigger a development pipeline
+You may now simply modify these examples and add your own. Any new commit to the repo automatically trigger a development pipeline.
 
 #### What happens when I push a commit?
 

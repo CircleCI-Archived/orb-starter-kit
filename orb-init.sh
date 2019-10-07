@@ -20,7 +20,7 @@ _checkRepoName
 _setCreateRepo
 echo
 _gitSetup
-printf "\e[1mSwitching to Alhpa branch\e[0m\n"
+printf "\e[1mSwitching to Alpha branch\e[0m\n"
 git checkout -b Alpha
 echo
 _orbSetup

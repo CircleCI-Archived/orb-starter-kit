@@ -10,7 +10,7 @@ In this Orb-Starter-Kit you will find an automated setup to create a development
 
 ### Prerequisites
 
-Before getting started you will need the the following things:
+Before getting started you will need the following things:
 1. A CircleCI account.
 2. Git installed and configured locally.
 3. A CircleCI [Personal API Token](https://circleci.com/docs/2.0/managing-api-tokens/#creating-a-personal-api-token) (Must be Org admin to claim a namespace and publish production Orbs)
@@ -53,7 +53,7 @@ Before getting started you will need the the following things:
 6. Publish!
 > Merge to master and automatically publish a new production version of your Orb!
 >
-> You will need to manually publish the production version of your Orb the first time it is created. This is not needed on subsequent pushes. *NOTE* currently _all_ 'major' changes as defined by the Orbs-Tool Orb requires manual publishing. All minor and patch chages will be automatically published.
+> You will need to manually publish the production version of your Orb the first time it is created. This is not needed on subsequent pushes. *NOTE* currently _all_ 'major' changes as defined by the Orbs-Tool Orb require manual publishing. All minor and patch changes will be automatically published.
 
 Once the orb is complete, you will have two new Green workflows in your CircleCI account. The first one for the initial setup and the second one will have produced a development version of your orb which contains a sample Command, Executor, and Job. 
 

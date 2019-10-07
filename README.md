@@ -11,7 +11,7 @@ In this Orb-Starter-Kit you will find an automated setup to create a development
 ### Prerequisites
 
 Before getting started you will need the the following things:
-1. A CircleCI account.
+1. A CircleCI [account](https://circleci.com/signup/).
 2. Git installed and configured locally.
 3. A CircleCI [Personal API Token](https://circleci.com/docs/2.0/managing-api-tokens/#creating-a-personal-api-token) (Must be Org admin to claim a namespace and publish production Orbs)
 4. A GitHub [Personal Access Token](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line) (Requires Repo access and Admin Org if pushing to an Org that is not your personal account)
@@ -22,23 +22,23 @@ Before getting started you will need the the following things:
 ### Getting started
 1. Download this repository and unzip it. [Download here](https://github.com/CircleCI-Public/orb-starter-kit/archive/master.zip)
 
-2. Rename the folder to the name you would like to give your orb
+2. Rename the folder to the name you would like to give your orb.
 
 3. Run the `orb-init.sh` script to begin.
 > The Orb Init script will automate the following tasks:
 >  * Install and update the CircleCI CLI
 > * Request a CircleCI API token if none is currently set.
-> * Set the target GitHub organization
-> * Set the target repo name (based off the folder name by default)
+> * Set the target GitHub organization.
+> * Set the target repo name (based off the folder name by default).
 > * Create the GitHub repository.
 > * Follow the project on CircleCI
 > * Create a public/private key pair.
-> * Store public key on GitHub
+> * Store public key on GitHub.
 > * Store private key on CircleCI (This gives the starter kit the ability to push tags back to GitHub, currently utilized to automatically trigger integration testing and deployment workflows).
 >  * Delete these keys locally.
 >  * Create an Alpha branch
 >  * Modify and replace config.yml file with pre-configured Orb Starter Kit config.
->  * Commit new branch with changes to GitHub
+>  * Commit new branch with changes to GitHub.
 >  * Clean up - The script will remove itself from the repo for the next commit.
 >
 > At this point the script will provide you a link to your new running Workflow on CircleCI which will be automatically building a "hello world" orb, which will be available at `<your namespace>/<your orb>@dev:Alpha`
@@ -48,14 +48,14 @@ Before getting started you will need the the following things:
 > Once the script has finished you may edit the contents of the /src folder to customize your orb.
 
 5. Create your dev Orb!
-> All commits to non-master branches will automatically result in the creation of a development orb under than branch. It is recommended currently (changes incoming ) all changes be made under the automatically created Alpha branch.
+> All commits to non-master branches will automatically result in the creation of a development orb under that branch. It is recommended currently (changes incoming) all changes be made under the automatically created Alpha branch.
 
 6. Publish!
 > Merge to master and automatically publish a new production version of your Orb!
 >
 > You will need to manually publish the production version of your Orb the first time it is created. This is not needed on subsequent pushes. *NOTE* currently _all_ 'major' changes as defined by the Orbs-Tool Orb requires manual publishing. All minor and patch chages will be automatically published.
 
-Once the orb is complete, you will have two new Green workflows in your CircleCI account. The first one for the initial setup and the second one will have produced a development version of your orb which contains a sample Command, Executor, and Job. 
+Once the orb is complete, you will have two new Green workflows in your CircleCI account. The first one is for the initial setup and the second one will have produced a development version of your orb which contains a sample Command, Executor, and Job. 
 
 You may now simply modify these examples and add your own. Any new commit to the repo automatically trigger a development pipeline
 

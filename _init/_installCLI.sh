@@ -17,5 +17,3 @@ _installCLI() {
     echo $CLI_FILE_PATH
     CCI_TOKEN=$(awk '/token:/ {print $2}' "$CLI_FILE_PATH")
 }
-
-_installCLI

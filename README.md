@@ -76,7 +76,7 @@ Following are some resources to help you build and test your orb:
 
 ### Permissions
 
-Explaination of all permissions required for the script.
+Explanation of all permissions required for the script.
 
 * **sudo** - The CircleCI CLI Update command will request sudo permissions to update.
 * **GitHub personal access token** - Used to automatically create the repository for you. Will require full "repo" access.

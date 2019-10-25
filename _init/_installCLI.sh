@@ -14,6 +14,6 @@ _installCLI() {
         CLI_FILE_PATH="$HOME/.circleci/cli.yml"
     fi
 
-    echo $CLI_FILE_PATH
+    echo "$CLI_FILE_PATH"
     CCI_TOKEN=$(awk '/token:/ {print $2}' "$CLI_FILE_PATH")
 }

@@ -5,5 +5,8 @@ description: >
   # What will your orb allow users to do?
   # Descriptions should be short, simple, and clear.
 
+display:
+  home_url: "https://www.github.com/EXAMPLE_ORG/EXAMPLE_PROJECT"
+
 orbs:
   hello: circleci/hello-build@0.0.5 # Sample imported orb

@@ -20,37 +20,38 @@ Before getting started you will need the the following things:
 ## Usage
 
 ### Getting started
-1. Download this repository and unzip it. [Download here](https://github.com/CircleCI-Public/orb-starter-kit/archive/master.zip)
+**1.** Clone this repo into a new directory with the name of your orb: 
 
-2. Rename the folder to the name you would like to give your orb.
+```
+git clone git@github.com:CircleCI-Public/orb-starter-kit.git My-Orb-Name
+```
 
-3. Run the `orb-init.sh` script to begin.
-> The Orb Init script will automate the following tasks:
+**2.** Create a new repository on GitHub with the same name. https://github.com/new
+
+**3.** Run the `orb-init.sh` script to begin.
+
+The Orb Init script will automate the following tasks:
+
 >  * Install and update the CircleCI CLI
-> * Request a CircleCI API token if none is currently set.
-> * Set the target GitHub organization.
-> * Set the target repo name (based off the folder name by default).
-> * Create the GitHub repository.
-> * Follow the project on CircleCI
-> * Create a public/private key pair.
-> * Store public key on GitHub.
-> * Store private key on CircleCI (This gives the starter kit the ability to push tags back to GitHub, currently utilized to automatically trigger integration testing and deployment workflows).
->  * Delete these keys locally.
->  * Create an Alpha branch
->  * Modify and replace config.yml file with pre-configured Orb Starter Kit config.
->  * Commit new branch with changes to GitHub.
+>  * Request a CircleCI API token if none is currently set.
+>  * Check to ensure git is installed and authenticated with GitHub.
+>  * Connect your local code with the newly created repo.
+>  * Create and switch to an "Alpha" branch
+>  * Walk through creating a new orb via the CircleCI CLI
+>  * Modify and replace the config.yml file with pre-configured Orb Starter Kit config template.
 >  * Clean up - The script will remove itself from the repo for the next commit.
->
-> At this point the script will provide you a link to your new running Workflow on CircleCI which will be automatically building a "hello world" orb, which will be available at `<your namespace>/<your orb>@dev:Alpha`
+>  * Commit alpha branch with changes to GitHub.
+
+At this point the script will provide you a link to your new running Workflow on CircleCI which will be automatically building a "hello world" orb, which will be available at `<your namespace>/<your orb>@dev:Alpha`
   
 
-4. Begin editing.
+**4.** Begin editing.
 > Once the script has finished you may edit the contents of the /src folder to customize your orb.
 
-5. Create your dev Orb!
+**5.** Create your dev Orb!
 > All commits to non-master branches will automatically result in the creation of a development orb under that branch. It is recommended currently (changes incoming) all changes be made under the automatically created Alpha branch.
 
-6. Publish!
+**6.** Publish!
 > Merge to master and automatically publish a new production version of your Orb!
 >
 > You will need to manually publish the production version of your Orb the first time it is created. This is not needed on subsequent pushes. *NOTE* currently _all_ 'major' changes as defined by the Orbs-Tool Orb require manual publishing. All minor and patch changes will be automatically published.

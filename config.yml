@@ -19,7 +19,7 @@ parameters:
 
 jobs:
   # This job is an example of an integration testing job.
-  # This job should execute a command from your orb and verify 
+  # This job should execute a command from your orb and verify
   # the output is as expected, otherwise the job should fail.
   #
   # Rename this job and add more as needed.

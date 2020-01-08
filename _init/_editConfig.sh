@@ -13,11 +13,13 @@ _setConfigSettings() {
       echo "          bot-token-variable: GH_BOT_USER_TOKEN" >> /tmp/cci_config_opts
       read -p "Enter the bot user's name." -r GH_BOT_USER_NAME
       echo "          bot-user: $GH_BOT_USER_NAME" >> /tmp/cci_config_opts
+    else
+      echo "          add-pr-comment: false" >> /tmp/cci_config_opts
     fi
     if [[ -n $ORBCONFIGOPT_SEMVERSUBJECT ]]
     then
       echo "          fail-if-semver-not-indicated: true" >> /tmp/cci_config_opts
-      else
+    else
       echo "          fail-if-semver-not-indicated: false" >> /tmp/cci_config_opts
     fi
     if [[ -n $ORBCONFIGOPT_TAGPUSH ]]

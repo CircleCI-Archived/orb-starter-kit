@@ -22,7 +22,7 @@ _setCreateRepo() {
     else
         echo
         printf "\e[91mError Creating Repo\e[0m\n"
-        echo "Unable to create the GitHub repo. Error reurned: $GIT_RES_STATUS"
+        echo "Unable to create the GitHub repo. Error returned: $GIT_RES_STATUS"
         echo
         sleep 1
         echo "$GIT_RES_BODY"

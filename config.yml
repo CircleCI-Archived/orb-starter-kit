@@ -4,7 +4,7 @@ version: 2.1
 # release must exist.);
 orbs:
   <orb-name>: <orb-namespace>/<orb-name>@dev:alpha
-  orb-tools: circleci/orb-tools@8.27.3
+  orb-tools: circleci/orb-tools@9.0
 
 # Pipeline parameters
 parameters:
@@ -84,7 +84,7 @@ workflows:
           orb-name: <orb-namespace>/<orb-name>
           <orb-config-opts>
           requires:
-            - integration-tests-for-your-orb
+            - integration-test-1
           filters:
             branches:
               only: master

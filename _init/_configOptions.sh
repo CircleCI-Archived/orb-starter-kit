@@ -1,8 +1,7 @@
 #!/bin/bash
-configOptions() {
+_configOptions() {
     echo
-    printf "You will now be given the option to enable advanced features for your pipeline."
-    echo
+    printf "\e[1mYou will now be given the option to enable advanced features for your pipeline.\e[0m?\n"
     echo
     printf "Enable \e[1madd-pr-comment\e[0m?\n"
     printf "This will allow you to specify a machine user to automatically comment on merged PRs with the final production version release of the orb."
@@ -45,4 +44,3 @@ configOptions() {
     echo
     echo
 }
-configOptions

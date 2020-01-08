@@ -36,15 +36,16 @@ _editConfig
 sleep 1
 echo "Replacing config in .circleci/config.yml with new modified config"
 rm -rf .circleci/config.yml
-mv config.yml .circleci
+mv config_modified.yml .circleci/config.yml
 echo
 echo "Producing development orb"
 circleci config pack src > orb.yml
 circleci orb publish orb.yml "${CCI_NAMESPACE}/${CCI_ORBNAME}@dev:alpha"
-rm -rf orb.yml
+_cleanup
 echo "Commiting changes to Alpha branch"
 git add .
 git commit -m "Setup complete"
 git push -u origin Alpha
 _textComplete
-_cleanup
+rm -f "$0"
+exit 0

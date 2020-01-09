@@ -38,9 +38,16 @@ echo "Replacing config in .circleci/config.yml with new modified config"
 rm -rf .circleci/config.yml
 mv config_modified.yml .circleci/config.yml
 echo
+printf "\e[1mCreating README.md\e[0m\n"
+_editReadMe
+echo
+sleep 2
+echo
+echo
 echo "Producing development orb"
 circleci config pack src > orb.yml
 circleci orb publish orb.yml "${CCI_NAMESPACE}/${CCI_ORBNAME}@dev:alpha"
+sleep 2
 _cleanup
 echo "Commiting changes to Alpha branch"
 git add .

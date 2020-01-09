@@ -1,9 +1,5 @@
 version: 2.1
 
-orbs:
-  orb-tools: circleci/orb-tools@8.27.3
-  shellcheck: circleci/shellcheck@1.3.14
-
 jobs:
   getting-started:
     docker:
@@ -18,7 +14,5 @@ workflows:
   setup:
     jobs:
       - getting-started
-      - orb-tools/lint
-      - shellcheck/check:
-          ignore: 'SC1090,SC2034,SC2059,SC2001,SC2143,SC2046'
+
 

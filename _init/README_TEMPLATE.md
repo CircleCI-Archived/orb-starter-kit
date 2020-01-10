@@ -2,12 +2,13 @@
 
 A description of your orb. Utilize this orb to easily add X to your CI/CD pipeline.
 
-TODO:
-When ready, you must _manually_ publish the first 1.0.0 version of your orb to initialize the production pipeline. After the first manual push you will no longer need to do this.
+**TODO:**
+Publish your production orb! You may notice the badges above and links to the registry page below are not working yet, once you publish your first production version orb, these will begin to function.
 
-1. When 1.0.0 is ready, create a PR to `master` with the commit message `1.0.0 [semver:skip]`.
-2. Merge to `master`
-3. Manually publish 1.0.0 from the CLI using this command: ``
+What to do:
+* Make changes to your `Alpha` branch.
+* Flush out your integration test jobs
+* Merge to `master` with "`[semver:major]`" in the commit subject to publish 1.0.0 of your orb.
 
 
 ## Usage

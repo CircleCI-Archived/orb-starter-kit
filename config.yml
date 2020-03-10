@@ -3,7 +3,7 @@ version: 2.1
 # add your orb below, to be used in integration tests (note: a @dev:alpha
 # release must exist.);
 orbs:
-  <orb-name>: <orb-namespace>/<orb-name>@dev:alpha
+  <orb-name>: <orb-namespace>/<orb-name>@<<pipeline.parameters.dev-orb-version>>
   orb-tools: circleci/orb-tools@9.0
 
 # Pipeline parameters
@@ -13,6 +13,9 @@ parameters:
   run-integration-tests:
     type: boolean
     default: false
+  dev-orb-version:
+    type: string
+    default: "dev:alpha"
 
 jobs:
   # This job is an example of an integration testing job.

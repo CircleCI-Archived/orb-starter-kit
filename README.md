@@ -7,15 +7,14 @@ Orbs are reusable [commands](https://circleci.com/docs/2.0/reusing-config/#autho
 
 ## What is in this kit?
 
-This kit includes two main components:
- * **Hello World template.**
-    * Within the [/src](https://github.com/CircleCI-Public/orb-starter-kit/tree/master/src) folder you can find find the destructured source of a simple "Hello World" orb. You can simply copy this code and begin hacking.
+This kit includes three main components:
+
  * **Orb init script.**
-    * The Orb init script will assist you in automatically creating an automated build-test-deploy pipeline for your orb on CircleCI.
-
-## Automated Orb Pipeline.
-
-Why would you want an automated pipeline for your orb?
+    * The Orb init script will auytomatically generate for you a new GitHub repository with all of the source code needed to get started developing your own orb, complete with automation pipeline
+* **Hello World template.**
+    * Within the [/src](https://github.com/CircleCI-Public/orb-starter-kit/tree/master/src) folder you can find find the destructured source of a simple "Hello World" orb. You can simply copy this code and begin hacking, or initialize it with our orb init script.
+* **Automated CI/CD Pipeline.**
+    * After you run the init script you will also be automatically given a development pipeline to test and update your orb on CircleCI.
   * Automated Semver release process
   * Automated Integration Testing
   * No need to use CLI commands.
@@ -43,6 +42,8 @@ git clone git@github.com:CircleCI-Public/orb-starter-kit.git My-Orb-Name
 **2.** Create a new repository on GitHub with the same name. https://github.com/new
 
 **3.** Run the `orb-init.sh` script to begin.
+
+[![asciicast](https://asciinema.org/a/oSc3M8uJri4zfo616wOVbh1lO.svg)](https://asciinema.org/a/oSc3M8uJri4zfo616wOVbh1lO)
 
 The Orb Init script will automate the following tasks:
 

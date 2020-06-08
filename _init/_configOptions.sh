@@ -48,7 +48,7 @@ _configOptions() {
     printf "Enable \e[1mpublish-version-tag\e[0m?\n"
     printf "Push a git tag describing the release that was just published."
     echo
-    printf "This option will require the fingerprints of a private key added to CircleCI which has a corrisponding public key on GitHub with the permission to push a tag. Refer to readme for full docs."
+    printf "This option will require the fingerprints of a private key added to CircleCI which has a corresponding public key on GitHub with the permission to push a tag. Refer to readme for full docs."
     echo
     echo
     read -p "Enter [y/n]: " -n 1 -r

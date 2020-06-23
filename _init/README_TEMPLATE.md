@@ -7,7 +7,13 @@ Publish your production orb! You may notice the badges above and links to the re
 
 What to do:
 * Make changes to your `Alpha` branch.
+ * Create your own re-usable steps as commands in `src/commands`
+ * Use those commands and create re-usable jobs in `src/jobs`
+ * Define the executors that your commands and jobs are based on in `src/executors`
+ * Update the examples in `src/examples` to put it all together for others to understand.
 * Flush out your integration test jobs
+  * In the `.circle/config.yml` you'll find a job called `integration-test-1` where you can use the commands and jobs you created
+    * You should push and ensure the `Alpha` orb is published, before using the orb here as the linter will fail trying to load the `config.yml`. This applies for any new command or job you add to the orb.
 * Merge to `master` with "`[semver:major]`" in the commit subject to publish 1.0.0 of your orb.
 
 

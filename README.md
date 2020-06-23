@@ -36,7 +36,7 @@ Before getting started you will need the the following things:
 **1.** Clone this repo into a new directory with the name of your orb: 
 
 ```
-git clone git@github.com:CircleCI-Public/orb-starter-kit.git My-Orb-Name
+git clone git@github.com:CircleCI-Public/orb-starter-kit.git My-Orb-Name-orb
 ```
 
 **2.** Create a new repository on GitHub with the same name. https://github.com/new

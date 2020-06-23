@@ -24,7 +24,7 @@ _orbSetup() {
     echo
     echo
     echo
-    printf "\e[1mSelect your Orb Name. Your Orb will live at ${CCI_NAMESPACE}/\e[96m{ORB NAME}\e[0m\n"
+    printf "\e[1mSelect your Orb Name. Do not include -orb in the name. Your Orb will live at ${CCI_NAMESPACE}/\e[96m{ORB NAME}\e[0m\n"
     read -p "Enter Orb Name: " -r CCI_ORBNAME
     echo
     sleep 1

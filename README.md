@@ -1,3 +1,11 @@
+# Deprecation Notice
+
+This starter kit has been deprecated in favour of the `orb init` command 
+included in the CircleCI CLI, which pairs with the new [Orb Project Template](https://github.com/CircleCI-Public/Orb-Project-Template)
+to make it easier to start up an orb.
+
+// Insert doc links here when they launch.
+
 # Orb Starter Kit [![CircleCI Build Status](https://circleci.com/gh/CircleCI-Public/orb-starter-kit.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/CircleCI-Public/orb-starter-kit) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 The Orb Starter Kit is a bash utility that makes creating your first orb a breeze!
